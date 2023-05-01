@@ -9,19 +9,24 @@ import {
 import Home from './components/Home/Home.jsx';
 import Banner from './components/Banner/Banner.jsx';
 import Blog from './components/Blog/Blog.jsx';
+import Pagenotfound from './components/404page/Pagenotfound.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
     children: [
       {
         path: '/',
-        element: <Banner/>
+        element: <Banner />
       },
       {
         path: '/blog',
-        element: <Blog/>
+        element: <Blog />
+      },
+      {
+        path: "*",
+        element: <Pagenotfound />
       }
     ]
   },
@@ -29,6 +34,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
