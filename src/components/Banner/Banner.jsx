@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Banner.css'
+import { Link, useParams } from 'react-router-dom';
+import ChefCard from '../ChefCard/ChefCard';
 const Banner = () => {
+    const [chefs, setChefs] = useState([]);
+    const { chef } = useParams();
+    useEffect(() => {
+        fetch('http://localhost:5000/chef')
+            .then(res => res.json())
+            .then(data => setChefs(data))
+            .catch(error => console.error(error))
+    }, [chef])
     return (
         <div>
             <div className="text-white carousel w-full h-[700px]">
@@ -56,6 +66,23 @@ const Banner = () => {
                         <a href="#slide1" className="btn btn-circle mt-[30%] mr-[50%]">❯</a>
                     </div>
                 </div>
+            </div>
+            <div className='mt-20'>
+                <h1 className='text-6xl font-serif font-bold text-center mb-20'>Our Indian Chef's</h1>
+                <div className='chef-card-container container ml-[100px]'>
+                    {
+                        chefs.map(chef => <ChefCard
+                            key={chef.id}
+                            chef={chef}
+                        ></ChefCard>)
+                    }
+                </div>
+
+                {/* {
+                    chefs.map(chef => <p
+                        key={chef.id}
+                    ><Link>{chef.chef_name}</Link></p>)
+                } */}
             </div>
         </div>
     );

@@ -4,3 +4,7 @@
   background-size: cover;
   background-position: center center;
 }
+.chef-card-container{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
