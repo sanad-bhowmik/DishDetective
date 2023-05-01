@@ -84,6 +84,17 @@ const Banner = () => {
                     ><Link>{chef.chef_name}</Link></p>)
                 } */}
             </div>
+            <section>
+                <h1 className='text-6xl mb-20 text-center font-serif font-bold'>Tradition</h1>
+                <div className='flex container ml-20 mb-10'>
+                    <div className='w-[50%] mt-[10%]'>
+                        <h2 className='font-serif text-2xl'>Indian food is a reflection of India's diverse and rich cultural heritage, with its use of aromatic spices, regional cuisines, and emphasis on vegetarianism and hospitality. Festivals and street food also play a significant role in Indian food culture.</h2>
+                    </div>
+                    <div>
+                        <img src="https://static.toiimg.com/thumb/88592503.cms?width=680&height=512&imgsize=112444" alt="" />
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };
