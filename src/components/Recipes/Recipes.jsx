@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Recipes.css'
 import { FaStar } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
+    const [favoriteRecipes, setFavoriteRecipes] = useState([]);
     const { id } = useParams();
+    const [clicked, setClicked] = useState({});
+
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -22,41 +27,56 @@ const Recipes = () => {
         fetchRecipes();
     }, [id]);
 
+    const handleAddToFavorites = (recipe) => {
+        setFavoriteRecipes([...favoriteRecipes, recipe]);
+        setClicked({ ...clicked, [recipe._id]: true });
+        toast.success(`${recipe.recipe_name} has been added to favorites!`, { autoClose: 2000 });
+    };
+
+
+    const isFavorite = (recipe) => {
+        return favoriteRecipes.some((favoriteRecipe) => favoriteRecipe._id === recipe._id);
+    };
+
     return (
-        <div>
-            {recipes.map((recipe) => (
-                <div key={recipe._id} className=''>
-                    <div className=' flex '>
-                        <div className=' ml-[8%]'>
-                            <h1 className='text-5xl font-serif underline'>{recipe.chef_name}</h1>
-                            <p className='w-[40%] mt-10 text-xl font-serif'>{recipe.chef_bio}</p>
-                            <img className=' h-[50%] ml-24 pt-32' src={recipe.chef_picture} alt="" />
-                        </div>
-                        <div>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, modi.</p>
-                        </div>
+        <div className='recipe-container'>
+            <div className='recipe-header'>
+                {recipes.map((recipe) => (
+                    <div key={recipe._id} className=''>
+                        <h1 className='recipe-title'>{recipe.chef_name}</h1>
+                        <p className='recipe-bio'>{recipe.chef_bio}</p>
+                        <img className=' profile-picture' src={recipe.chef_picture} alt="" />
                     </div>
-                    <div className="divider"></div>
-                    <div className='ml-[40%] mt-24'>
-                        <h1>Recipes</h1>
-                        <div className="card w-96 bg-base-100 shadow-xl">
-                            <figure className="px-10 pt-10">
-                                <img src={recipe.pic} alt="Shoes" className="rounded-xl" />
-                            </figure>
-                            <div className="card-body items-center text-center">
-                                <h2 className="card-title">{recipe.recipe_name}</h2>
-                                <p>Ingredients</p>
-                                <p> {recipe.ingredients}</p>
-                                <p>Cooking method</p>
-                                <p>{recipe.cooking_method}</p>
+                ))}
+            </div>
+            <div className='divider'></div>
+            <div className='recipes'>
+                <h1>Recipes</h1>
+                <div className='recipe-cards'>
+                    {recipes.map((recipe) => (
+                        <div key={recipe._id} className='recipe-card'>
+                            <img className='recipe-picture' src={recipe.pic} alt="Shoes" />
+                            <div className='recipe-details'>
+                                <h2 className='recipe-name'>{recipe.recipe_name}</h2>
+                                <p className='ingredients'>Ingredients: {recipe.ingredients}</p>
+                                <p className='cooking-method'>Cooking method: {recipe.cooking_method}</p>
                                 <div className="card-actions">
-                                    <button className="btn btn-warning">Rating:{recipe.rating}<FaStar /></button>
+                                    <button className="rating-btn ml-24">Rating: {recipe.rating} <FaStar /></button>
+                                    <button
+                                        className={`rating-btn ml-[20%] ${clicked[recipe._id] ? 'disabled' : ''}`}
+                                        disabled={clicked[recipe._id]}
+                                        onClick={() => handleAddToFavorites(recipe)}
+                                    >
+                                        {clicked[recipe._id] ? 'Added to Favorites' : 'Add to Favorites'}
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
-            ))}
+            </div>
+            <ToastContainer />
         </div>
     );
 };

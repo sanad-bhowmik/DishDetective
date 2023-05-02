@@ -1,9 +1,118 @@
-/* .chef-details{
-    background-image: url('https://img.freepik.com/premium-photo/cooking-banner-kitchen-black-table-ingredients-food-top-view-free-space-your-text_187166-23621.jpg');
-    background-repeat: no-repeat;
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     background-size: cover;
-    background-position: center center; */
-/* } */
-.img{
-    top: 20%;
+    background-position: center;
 }
+
+.recipe-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+}
+
+.recipe-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.recipe-bio {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.profile-picture {
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin-left: 40%;
+}
+
+.divider {
+    width: 80%;
+    margin: 3rem auto;
+    height: 2px;
+    background-color: #fff;
+    opacity: 0.5;
+}
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+}
+
+.recipe-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    margin: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.recipe-picture {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.recipe-details {
+    padding: 2rem;
+}
+
+.recipe-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.ingredients,
+.cooking-method {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.rating-btn {
+    font-size: 1.5rem;
+    background-color: #f5a623;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.rating-btn:active {
+    transform: translateY(2px);
+}
+.disabled {
+    color: #999;
+  background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
