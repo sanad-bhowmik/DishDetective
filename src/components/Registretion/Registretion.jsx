@@ -1,11 +1,32 @@
-import React from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getAuth } from 'firebase/auth'
+import app from '../providers/AuthProvider';
 
+
+const auth = getAuth(app)
 const Registretion = () => {
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        console.log(email, password);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    }
     return (
         <div>
             <div className="h-screen bg-gradient-to-br from-teal-400 to-pink-500 flex justify-center items-center">
-                <form className="w-80 p-8 rounded-lg bg-white shadow-lg">
+                <form onSubmit={handleSubmit} className="w-80 p-8 rounded-lg bg-white shadow-lg">
                     <h2 className="text-3xl font-bold mb-4 text-center">Log In</h2>
                     <div className="mb-4">
                         <label htmlFor="name" className="block font-bold text-gray-700 mb-2">Name</label>
