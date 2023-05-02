@@ -135,5 +135,8 @@
     }
   }
 .banner-recipe{
-   
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQma_8_F5nvnBTBOXJ0TMoxEZip9zYNPb61VA&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }  
