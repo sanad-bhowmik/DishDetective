@@ -1,47 +1,57 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth'
-import app from '../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import app from '../firebase/firebase.config';
 
 const auth = getAuth(app)
 const Registretion = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        const name = event.target.name.value;
-        const photo = event.target.photo.value;
-        console.log(name, email, password);
-        if (!email || !password) {
-            toast.error('Please enter both email and password');
-            return;
-        }
-
-        if (password.length < 6) {
-            toast.error('Password must be at least 6 characters long');
-            return;
-        }
-
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-                event.target.reset();
-                toast.success('Registration successful');
-                updateUserData(result.user, name, photo)
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Registration failed');
-            });
-    };
+    
+const handleSubmit = event => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const name = event.target.name.value;
+    const photo = event.target.photo.value;
+    console.log(name, email, password);
+  
+    if (!email || !password) {
+      toast.error('Please enter both email and password');
+      return;
+    }
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters long');
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        event.target.reset();
+        toast.success('Registration successful');
+        updateUserData(result.user, name, photo);
+  
+        // Sign out the user immediately after registration
+        signOut(auth)
+          .then(() => {
+            console.log('User signed out');
+          })
+          .catch(error => {
+            console.error('Error signing out user:', error);
+          });
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error('Registration failed');
+      });
+  };
+  
 
     const updateUserData = (user, name, photo) => {
         updateProfile(user, {
