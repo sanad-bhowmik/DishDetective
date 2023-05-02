@@ -19,7 +19,7 @@ const Recipes = () => {
                 const data = await response.json();
                 const filteredRecipes = data.filter((recipe) => recipe.chef_id === id);
                 setRecipes(filteredRecipes);
-                setLoading(false); // set loading to false when data is fetched
+                setLoading(false); 
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }

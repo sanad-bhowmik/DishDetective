@@ -12,6 +12,8 @@ import Blog from './components/Blog/Blog.jsx';
 import Pagenotfound from './components/404page/Pagenotfound.jsx';
 import ChefCard from './components/ChefCard/ChefCard.jsx';
 import Recipes from './components/Recipes/Recipes.jsx';
+import Login from './components/Login/Login.jsx';
+import Registretion from './components/Registretion/Registretion.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: '/chef/:id/recipes',
         element: <Recipes/>
+      },
+      {
+        path: '/login',
+        element: <Login/>
+      },
+      {
+        path: '/registration',
+        element: <Registretion/>
       }
     ]
   },
