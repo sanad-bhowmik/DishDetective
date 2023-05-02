@@ -3,28 +3,46 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth'
 import app from '../providers/AuthProvider';
-
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const auth = getAuth(app)
 const Registretion = () => {
-    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
+    const [success,setSuccess] = useState('');
 
     const handleSubmit = event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        console.log(email, password);
+      
+        if (!email || !password) {
+          toast.error('Please enter both email and password');
+          return;
+        }
+      
+        if (password.length < 6) {
+          toast.error('Password must be at least 6 characters long');
+          return;
+        }
+      
         createUserWithEmailAndPassword(auth, email, password)
-        .then(result => {
+          .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
-        })
-        .catch(error =>{
+            event.target.reset();
+            toast.success('Registration successful');
+          })
+          .catch(error => {
             console.error(error);
-        })
-    }
+            toast.error('Registration failed');
+          });
+      };
+      
     return (
         <div>
+             <ToastContainer />
             <div className="h-screen bg-gradient-to-br from-teal-400 to-pink-500 flex justify-center items-center">
                 <form onSubmit={handleSubmit} className="w-80 p-8 rounded-lg bg-white shadow-lg">
                     <h2 className="text-3xl font-bold mb-4 text-center">Log In</h2>
@@ -44,7 +62,7 @@ const Registretion = () => {
                         <label htmlFor="photourl" className="block font-bold text-gray-700 mb-2">Photo Url</label>
                         <input type="url" name='photo' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mb-4">Log In</button>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mb-4">Register</button>
                     <Link to='/login' className="link link-error text-xl pl-10">Have Account? Login</Link>
                 </form>
             </div>
