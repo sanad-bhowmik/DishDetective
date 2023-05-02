@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth'
@@ -10,39 +10,55 @@ import 'react-toastify/dist/ReactToastify.css';
 const auth = getAuth(app)
 const Registretion = () => {
     const [error, setError] = useState('');
-    const [success,setSuccess] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleSubmit = event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-      
+        const name = event.target.name.value;
+        const photo = event.target.photo.value;
+        console.log(name, email, password);
         if (!email || !password) {
-          toast.error('Please enter both email and password');
-          return;
+            toast.error('Please enter both email and password');
+            return;
         }
-      
+
         if (password.length < 6) {
-          toast.error('Password must be at least 6 characters long');
-          return;
+            toast.error('Password must be at least 6 characters long');
+            return;
         }
-      
+
         createUserWithEmailAndPassword(auth, email, password)
-          .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            event.target.reset();
-            toast.success('Registration successful');
-          })
-          .catch(error => {
-            console.error(error);
-            toast.error('Registration failed');
-          });
-      };
-      
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                event.target.reset();
+                toast.success('Registration successful');
+                updateUserData(result.user, name, photo)
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error('Registration failed');
+            });
+    };
+
+    const updateUserData = (user, name, photo) => {
+        updateProfile(user, {
+            displayName: name, photoURL: photo
+        })
+            .then(() => {
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error('Registration failed');
+            });
+    }
+
+
     return (
         <div>
-             <ToastContainer />
+            <ToastContainer />
             <div className="h-screen bg-gradient-to-br from-teal-400 to-pink-500 flex justify-center items-center">
                 <form onSubmit={handleSubmit} className="w-80 p-8 rounded-lg bg-white shadow-lg">
                     <h2 className="text-3xl font-bold mb-4 text-center">Registration</h2>

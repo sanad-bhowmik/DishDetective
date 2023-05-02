@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import app from '../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const [user, setUser] = useState(null)
+    const emailRef = useRef();
 
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
@@ -65,7 +66,20 @@ const Login = () => {
                 toast.error(error.message);
             });
     };
-
+    const handleResetPassword = event => {
+        const email = emailRef.current.value;
+        if (!email) {
+            toast.error("Provide email and password");
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                toast.error("Check your Email");
+            })
+            .catch(error => {
+                toast.error(error.message);
+            })
+    }
     return (
         <div className="h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex justify-center items-center">
             <ToastContainer />
@@ -73,7 +87,7 @@ const Login = () => {
                 <h2 className="text-3xl font-bold mb-4 text-center">Log In</h2>
                 <div className="mb-4">
                     <label htmlFor="email" className="block font-bold text-gray-700 mb-2">Email</label>
-                    <input type="email" name='email' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" required />
+                    <input type="email" ref={emailRef} name='email' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" required />
                 </div>
                 <div className="mb-6">
                     <label htmlFor="password" className="block font-bold text-gray-700 mb-2">Password</label>
@@ -83,6 +97,7 @@ const Login = () => {
                 <button onClick={handleGoogleSignIn} className="bg-gradient-to-br from-red-600 to-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full w-full mb-2">Google</button>
                 <button onClick={handleGithubSignIn} className="bg-gray-800 hover:bg-gray-900 mb-6 text-white font-bold py-2 px-4 rounded-full w-full">Github</button>
                 <Link to='/registration' className="link link-error text-xl pl-10">New here? Register</Link>
+                <button onClick={handleResetPassword} className="link text-lg pl-14">Forget password?</button>
             </form>
         </div>
     );
