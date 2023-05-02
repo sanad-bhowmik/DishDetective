@@ -37,7 +37,7 @@ const Header = () => {
                                 <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" alt='hello' />
                             </div>
                         </label>
-                        <NavLink to='/login' activeClassName="bg-purple-500">Login</NavLink>
+                        <NavLink to='/login' activeClassName="bg-purple-500"><button className="btn btn-accent">Login</button></NavLink>
                     </div>
                 </div>
             </div>

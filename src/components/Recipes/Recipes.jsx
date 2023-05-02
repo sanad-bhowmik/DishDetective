@@ -10,7 +10,7 @@ const Recipes = () => {
     const [favoriteRecipes, setFavoriteRecipes] = useState([]);
     const { id } = useParams();
     const [clicked, setClicked] = useState({});
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -19,7 +19,7 @@ const Recipes = () => {
                 const data = await response.json();
                 const filteredRecipes = data.filter((recipe) => recipe.chef_id === id);
                 setRecipes(filteredRecipes);
-                setLoading(false); 
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }
@@ -41,19 +41,22 @@ const Recipes = () => {
 
     if (loading) {
         return <div class="spinner">
-        
-      </div>
-      
+
+        </div>
+
     }
 
     return (
         <div className='recipe-container'>
             <div className='recipe-header'>
                 {recipes.map((recipe) => (
-                    <div key={recipe._id} className=''>
+                    <div key={recipe._id} className='banner-recipe text-white'>
                         <h1 className='recipe-title'>{recipe.chef_name}</h1>
-                        <p className='recipe-bio'>{recipe.chef_bio}</p>
-                        <img className=' profile-picture' src={recipe.chef_picture} alt="" />
+                        <p className='recipe-bio w-[50%] ml-[30%]'>{recipe.chef_bio}</p>
+                            <p > {recipe.years_of_experience}</p>
+                            <p>{recipe.number_of_recipes}</p>
+                            <p>{recipe.likes}</p>
+                            <img className=' profile-picture mb-20' src={recipe.chef_picture} alt="" />
                     </div>
                 ))}
             </div>
