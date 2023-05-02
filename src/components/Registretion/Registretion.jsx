@@ -45,7 +45,7 @@ const Registretion = () => {
              <ToastContainer />
             <div className="h-screen bg-gradient-to-br from-teal-400 to-pink-500 flex justify-center items-center">
                 <form onSubmit={handleSubmit} className="w-80 p-8 rounded-lg bg-white shadow-lg">
-                    <h2 className="text-3xl font-bold mb-4 text-center">Log In</h2>
+                    <h2 className="text-3xl font-bold mb-4 text-center">Registration</h2>
                     <div className="mb-4">
                         <label htmlFor="name" className="block font-bold text-gray-700 mb-2">Name</label>
                         <input type="name" name='name' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
