@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
+
 
 const Header = () => {
     return (
@@ -32,13 +34,14 @@ const Header = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="mr-20">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" alt='hello' />
-                            </div>
-                        </label>
-                        <NavLink to='/login' activeClassName="bg-purple-500"><button className="btn btn-accent">Login</button></NavLink>
+                        <div className="group relative flex justify-center">
+                            <button tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <img className="w-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt='hello' />
+                            </button>
+                            <span className="absolute top-10 scale-0 rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100">✨ You hover me!</span>
+                        </div>
                     </div>
+                    <NavLink to='/login' activeClassName="bg-purple-500"><button className="btn btn-accent">Login</button></NavLink>
                 </div>
             </div>
         </div>
