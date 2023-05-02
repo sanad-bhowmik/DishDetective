@@ -10,7 +10,7 @@ const Recipes = () => {
     const [favoriteRecipes, setFavoriteRecipes] = useState([]);
     const { id } = useParams();
     const [clicked, setClicked] = useState({});
-
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -19,6 +19,7 @@ const Recipes = () => {
                 const data = await response.json();
                 const filteredRecipes = data.filter((recipe) => recipe.chef_id === id);
                 setRecipes(filteredRecipes);
+                setLoading(false); // set loading to false when data is fetched
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }
@@ -37,6 +38,13 @@ const Recipes = () => {
     const isFavorite = (recipe) => {
         return favoriteRecipes.some((favoriteRecipe) => favoriteRecipe._id === recipe._id);
     };
+
+    if (loading) {
+        return <div class="spinner">
+        
+      </div>
+      
+    }
 
     return (
         <div className='recipe-container'>
