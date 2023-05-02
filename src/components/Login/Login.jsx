@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import app from '../providers/AuthProvider';
 
 const Login = () => {
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    const [user, setUser] = useState(null)
 
-    // googlesign in
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+
+    // googlesign start
     const handleGoogleSignIn = (event) => {
         event.preventDefault();
         // console.log('hello from google');
-        signInWithPopup(auth, provider)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => {
-            console.log('error', error.message);
-        })
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setUser(loggedUser)
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            })
     }
+    // googlesign end
+
+    //github signin start
+    const handleGithubSignIn = event => {
+        event.preventDefault();
+        signInWithPopup(auth, githubProvider)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setUser(loggedUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+    //github signin End
+
     return (
         <div className="h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex justify-center items-center">
             <form className="w-80 p-8 rounded-lg bg-white shadow-lg">
@@ -34,7 +56,7 @@ const Login = () => {
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mb-4">Log In</button>
                 <button onClick={handleGoogleSignIn} className="bg-gradient-to-br from-red-600 to-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full w-full mb-2">Google</button>
-                <button className="bg-gray-800 hover:bg-gray-900 mb-6 text-white font-bold py-2 px-4 rounded-full w-full">Github</button>
+                <button onClick={handleGithubSignIn} className="bg-gray-800 hover:bg-gray-900 mb-6 text-white font-bold py-2 px-4 rounded-full w-full">Github</button>
                 <Link to='/registration' className="link link-error text-xl pl-10">New here? Register</Link>
             </form>
         </div>
