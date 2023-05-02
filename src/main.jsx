@@ -11,6 +11,7 @@ import Banner from './components/Banner/Banner.jsx';
 import Blog from './components/Blog/Blog.jsx';
 import Pagenotfound from './components/404page/Pagenotfound.jsx';
 import ChefCard from './components/ChefCard/ChefCard.jsx';
+import Recipes from './components/Recipes/Recipes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,9 +31,12 @@ const router = createBrowserRouter([
         element: <Pagenotfound />
       },
       {
-        path: "/chefcard/:id",
+        path: "/chef/:id",
         element: <ChefCard />,
-        loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
+      }, 
+      {
+        path: '/chef/:id/recipes',
+        element: <Recipes/>
       }
     ]
   },
