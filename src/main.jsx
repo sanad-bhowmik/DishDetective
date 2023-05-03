@@ -14,6 +14,7 @@ import ChefCard from './components/ChefCard/ChefCard.jsx';
 import Recipes from './components/Recipes/Recipes.jsx';
 import Login from './components/Login/Login.jsx';
 import Registretion from './components/Registretion/Registretion.jsx';
+import AuthProviders from './components/providers/AuthProviders.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,18 +36,18 @@ const router = createBrowserRouter([
       {
         path: "/chef/:id",
         element: <ChefCard />,
-      }, 
+      },
       {
         path: '/chef/:id/recipes',
-        element: <Recipes/>
+        element: <Recipes />
       },
       {
         path: '/login',
-        element: <Login/>
+        element: <Login />
       },
       {
         path: '/registration',
-        element: <Registretion/>
+        element: <Registretion />
       }
     ]
   },
@@ -54,6 +55,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders><RouterProvider router={router} /></AuthProviders>
   </React.StrictMode>,
 )

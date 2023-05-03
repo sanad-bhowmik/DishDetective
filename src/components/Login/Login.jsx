@@ -1,20 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { AuthContext } from '../providers/AuthProviders';
 
 
 const Login = () => {
-    const [user, setUser] = useState(null)
+    const { signIn } = useContext(AuthContext)
     const emailRef = useRef();
 
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
-
+    const [user, setUser] = useState(null);
 
     // googlesign start
     const handleGoogleSignIn = (event) => {
@@ -53,7 +54,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        signInWithEmailAndPassword(auth, email, password)
+        signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);

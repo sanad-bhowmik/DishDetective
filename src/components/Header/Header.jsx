@@ -1,16 +1,14 @@
-
 import { getAuth } from 'firebase/auth';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import app from '../firebase/firebase.config';
-
-
+import { AuthContext } from '../providers/AuthProviders';
 const auth = getAuth(app)
 const Header = () => {
-    const [user, setUser] = useState(null);
     const [photoURL, setPhotoURL] = useState('');
     const [displayName, setDisplayName] = useState('');
-
+    const { user, setUser } = useContext(AuthContext) // Add setUser here
+    
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -23,12 +21,10 @@ const Header = () => {
                 setPhotoURL('');
             }
         });
-
         return () => {
             unsubscribe();
         };
     }, []);
-
     return (
         <div>
             <div className="navbar bg-orange-50 font-serif">
@@ -43,7 +39,6 @@ const Header = () => {
                                 <NavLink to='/blog' activeClassName="bg-purple-500" className="justify-between">
                                     Blog
                                 </NavLink>
-
                             </li>
                         </ul>
                     </div>
@@ -84,5 +79,4 @@ const Header = () => {
         </div>
     );
 };
-
 export default Header;
