@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import { toast } from 'react-toastify';
@@ -11,6 +11,10 @@ import { AuthContext } from '../providers/AuthProviders';
 const Login = () => {
     const { signIn } = useContext(AuthContext)
     const emailRef = useRef();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
@@ -26,6 +30,7 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 setUser(loggedUser)
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log('error', error.message);
@@ -41,6 +46,7 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 setUser(loggedUser);
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
@@ -61,6 +67,7 @@ const Login = () => {
                 toast.success('Login successful');
                 setUser(loggedUser);
                 form.reset();
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);

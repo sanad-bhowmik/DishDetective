@@ -53,10 +53,7 @@ const Recipes = () => {
                     <div key={recipe._id} className='banner-recipe text-white'>
                         <h1 className='recipe-title'>{recipe.chef_name}</h1>
                         <p className='recipe-bio w-[50%] ml-[30%]'>{recipe.chef_bio}</p>
-                            <p > {recipe.years_of_experience}</p>
-                            <p>{recipe.number_of_recipes}</p>
-                            <p>{recipe.likes}</p>
-                            <img className=' profile-picture mb-20' src={recipe.chef_picture} alt="" />
+                        <img className=' profile-picture mb-20' src={recipe.chef_picture} alt="" />
                     </div>
                 ))}
             </div>
