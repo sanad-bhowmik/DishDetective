@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Banner.css'
 import { Link, useParams } from 'react-router-dom';
 import ChefCard from '../ChefCard/ChefCard';
+import Marquee from "react-fast-marquee";
+
+
 const Banner = () => {
     const [chefs, setChefs] = useState([]);
     const { chef } = useParams();
@@ -94,6 +97,48 @@ const Banner = () => {
                         <img src="https://static.toiimg.com/thumb/88592503.cms?width=680&height=512&imgsize=112444" alt="" />
                     </div>
                 </div>
+            </section>
+            <section className='mt-[15%] mb-20'>
+                <h1 className='text-center mb-24 text-6xl font-mono underline'>International Reviews</h1>
+                <Marquee>
+                    <div className="ml-10 card w-96 bg-base-100 shadow-xl">
+                        <figure  className='h-[20%]'><img src="https://pbs.twimg.com/profile_images/1448696882746695683/Jp2_LEBL_400x400.jpg" alt="Shoes" /></figure>
+                        <div className="card-body text-center">
+                            <h2 className="card-title font-bold ml-20">Gordon Ramsay</h2>
+                            <p>"Indian food is a fascinating blend of flavors, colors, and spices that create a truly unique culinary experience."</p>
+                        </div>
+                    </div>
+                    <div className="ml-10 card w-96 bg-base-100 shadow-xl">
+                        <figure  className=''><img src="https://m.media-amazon.com/images/M/MV5BMTU2NzIwNjMxNF5BMl5BanBnXkFtZTgwMzcyNzc2NTM@._V1_.jpg" alt="Shoes" /></figure>
+                        <div className="card-body text-center">
+                            <h2 className="card-title font-bold ml-20"> Anthony Bourdain</h2>
+                            <p>"Indian cuisine is incredibly diverse, with each region offering its own distinctive and delicious dishes."</p>
+                        </div>
+                    </div>
+                    <div className="ml-10 card w-96 bg-base-100 shadow-xl">
+                        <figure  className='h-[10%]'><img src="https://pbs.twimg.com/profile_images/1493693969825423365/pqVtK9q0_400x400.jpg" alt="Shoes" /></figure>
+                        <div className="card-body text-center">
+                            <h2 className="card-title font-bold ml-20">Nigella Lawson</h2>
+                            <p>"The aromatic spices and rich flavors of Indian food are simply irresistible."</p>
+                        </div>
+                    </div>
+                    <div className="ml-10 card w-96 bg-base-100 shadow-xl">
+                        <figure className='h-[20%]'><img src="https://www.outlookindia.com/outlooktraveller/resizer.php?src=https://www.outlookindia.com/outlooktraveller/public/uploads/files/2015/03/091015143231-JAMIE.ITALIAN.0300.jpg&w=500&h=400" alt="Shoes" /></figure>
+                        <div className="card-body text-center">
+                            <h2 className="card-title font-bold ml-20">Jamie Oliver</h2>
+                            <p>"Indian food offers an amazing variety of vegetarian dishes, making it a paradise for veggie lovers."
+                            </p>
+                        </div>
+                    </div>
+                    <div className="ml-10 card w-96 bg-base-100 shadow-xl">
+                        <figure className='h-[20%]'><img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2014/09/13/20/28-Ottolenghi-js.jpg" alt="Shoes" /></figure>
+                        <div className="card-body text-center">
+                            <h2 className="card-title font-bold ml-20">Yotam Ottolenghi</h2>
+                            <p>"Indian food is a celebration of bold flavors, textures, and fragrances that never fail to impress."
+                            </p>
+                        </div>
+                    </div>
+                </Marquee>
             </section>
         </div>
     );
