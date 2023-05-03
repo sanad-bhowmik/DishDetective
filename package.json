@@ -23,6 +23,7 @@
     "react-lazy-load": "^4.0.1",
     "react-pdf": "^6.2.2",
     "react-router-dom": "^6.11.0",
+    "react-to-pdf": "^0.0.14",
     "react-toastify": "^9.1.2",
     "react-tooltip": "^5.11.1",
     "sort-by": "^1.2.0"

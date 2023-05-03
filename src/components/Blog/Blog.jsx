@@ -1,10 +1,16 @@
 import React from 'react';
+import ReactDOM from "react-dom";
+import Pdf from "react-to-pdf";
 
+const ref = React.createRef();
 const Blog = () => {
     return (
         <div>
+            <Pdf targetRef={ref} filename="blog.pdf">
+                {({ toPdf }) => <button onClick={toPdf} className="btn btn-accent">Generate Pdf</button>}
+            </Pdf>
             <h1 className='mt-10 mb-10 text-6xl text-center font-serif'>Questions</h1>
-            <div className='print'>
+            <div className='print'ref={ref}>
                 <div className="chat chat-start text-xl ">
                     <div className="chat-bubble bg-red-300 text-black">Q-01:Tell us the differences between uncontrolled and controlled components.
                     </div>
