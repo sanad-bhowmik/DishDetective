@@ -15,6 +15,7 @@ import Recipes from './components/Recipes/Recipes.jsx';
 import Login from './components/Login/Login.jsx';
 import Registretion from './components/Registretion/Registretion.jsx';
 import AuthProviders from './components/providers/AuthProviders.jsx';
+import PrivateRoute from './components/routes/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/chef/:id/recipes',
-        element: <Recipes />
+        element: <PrivateRoute><Recipes /></PrivateRoute>
       },
       {
         path: '/login',

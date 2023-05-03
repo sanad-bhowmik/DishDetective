@@ -40,7 +40,7 @@ const Recipes = () => {
     };
 
     if (loading) {
-        return <div class="spinner">
+        return <div className="spinner">
 
         </div>
 
