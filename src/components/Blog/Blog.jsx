@@ -4,7 +4,7 @@ const Blog = () => {
     return (
         <div>
             <h1 className='mt-10 mb-10 text-6xl text-center font-serif'>Questions</h1>
-            <div>
+            <div className='print'>
                 <div className="chat chat-start text-xl ">
                     <div className="chat-bubble bg-red-300 text-black">Q-01:Tell us the differences between uncontrolled and controlled components.
                     </div>
