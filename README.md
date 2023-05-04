@@ -1,4 +1,7 @@
 # b7a10-chef-recipe-hunter-client-side-sanad-bhowmik
+
+# Firebase-LiveLink: https://dish-detective.web.app
+# Netlify-LiveLink: https://spiffy-choux-db81fb.netlify.app/
 ## Features
 * The main features of Chef Recipe Hunter include:
 
