@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import app from '../firebase/firebase.config';
 import { AuthContext } from '../providers/AuthProviders';
+import img from '../../assets/chef.gif'
 const auth = getAuth(app)
 
 const Header = () => {
@@ -43,6 +44,7 @@ const Header = () => {
                             </li>
                         </ul>
                     </div>
+                    <img className='h-10' src={img} alt="" />
                     <h1 className="btn btn-ghost normal-case text-xl">DishDetective</h1>
                 </div>
                 <div className="navbar-center hidden lg:flex">

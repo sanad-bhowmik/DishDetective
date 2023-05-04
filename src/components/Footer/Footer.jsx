@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCopyright } from "react-icons/fa";
-
+import img from '../../assets/bibimbap.png'
 
 const Footer = () => {
     return (
@@ -12,7 +12,7 @@ const Footer = () => {
                 </div>
                 <div className="grid-flow-col text-black gap-4 md:place-self-center md:justify-self-end">
                     <h1 className=' font-mono mr-[40%]'>Find Your Taste</h1>
-                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+                    <img className='h-10' src={img} alt="" />
                 </div>
             </footer>
         </div>
