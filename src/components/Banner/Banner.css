@@ -8,3 +8,151 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
 }
+.carousel {
+  display: flex;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 700px;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .carousel {
+    height: 400px;
+  }
+
+  .carousel-item {
+    height: 400px;
+  }
+
+  .mt-250 {
+    margin-top: 150px !important;
+  }
+
+  .ml-125 {
+    margin-left: 20px !important;
+  }
+
+  .w-455 {
+    width: 250px !important;
+  }
+
+  .h-120 {
+    height: 80px !important;
+  }
+
+  .ml-300 {
+    margin-left: 50px !important;
+  }
+
+  .mt-166 {
+    margin-top: 100px !important;
+  }
+
+  .h-60 {
+    height: 40% !important;
+  }
+
+  .text-7xl {
+    font-size: 32px !important;
+  }
+
+  .chef-card-container {
+    margin-left: 10px !important;
+  }
+
+  .container.ml-20 {
+    margin-left: 0 !important;
+  }
+
+  .w-50 {
+    width: 100% !important;
+  }
+
+  .mt-10 {
+    margin-top: 0 !important;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .carousel {
+    height: 700px;
+  }
+
+  .carousel-item {
+    height: 700px;
+  }
+
+  .mt-250 {
+    margin-top: 250px;
+  }
+
+  .ml-125 {
+    margin-left: 125px;
+  }
+
+  .w-455 {
+    width: 455px;
+  }
+
+  .h-120 {
+    height: 120px;
+  }
+
+  .ml-300 {
+    margin-left: 300px;
+  }
+
+  .mt-166 {
+    margin-top: 166px;
+  }
+
+  .h-60 {
+    height: 60%;
+  }
+
+  .text-7xl {
+    font-size: 48px;
+  }
+
+  .chef-card-container {
+    margin-left: 100px;
+  }
+
+  .container.ml-20 {
+    margin-left: 20px;
+  }
+
+  .w-50 {
+    width: 50%;
+  }
+
+  .mt-10 {
+    margin-top: 10%;
+  }
+}

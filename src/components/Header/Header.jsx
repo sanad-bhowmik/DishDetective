@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import app from '../firebase/firebase.config';
 import { AuthContext } from '../providers/AuthProviders';
 const auth = getAuth(app)
+
 const Header = () => {
     const [photoURL, setPhotoURL] = useState('');
     const [displayName, setDisplayName] = useState('');
