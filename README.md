@@ -33,3 +33,4 @@ Chef Recipe Hunter is built using the following technologies:
 * Node.js: A JavaScript runtime environment.
 
 * Express: A web application framework for Node.js.
+* tailwind : for design

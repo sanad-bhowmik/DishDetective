@@ -59,7 +59,7 @@ const Recipes = () => {
             </div>
             <div className='divider'></div>
             <div className='recipes'>
-                <h1>Recipes</h1>
+                <h1 className='text-6xl mb-6 underline font-bold'>Recipes</h1>
                 <div className='recipe-cards'>
                     {recipes.map((recipe) => (
                         <div key={recipe._id} className='recipe-card'>
