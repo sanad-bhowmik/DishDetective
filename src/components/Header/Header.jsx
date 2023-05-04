@@ -28,7 +28,7 @@ const Header = () => {
     }, []);
     return (
         <div>
-            <div className="navbar bg-gradient-to-r from-green-500 to-yellow-500 font-serif">
+            <div className="navbar bg-gradient-to-r  from-blue-200 to-red-200 font-serif">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
