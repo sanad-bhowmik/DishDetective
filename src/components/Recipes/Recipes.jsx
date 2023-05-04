@@ -15,7 +15,7 @@ const Recipes = () => {
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
-                const response = await fetch('http://localhost:5000/recipe');
+                const response = await fetch('https://dishdetective-server-sanad-bhowmik.vercel.app/recipe');
                 const data = await response.json();
                 const filteredRecipes = data.filter((recipe) => recipe.chef_id === id);
                 setRecipes(filteredRecipes);
